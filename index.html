@@ -7,6 +7,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="js/app.js"></script>
+  <script src="js/timeformat.js"></script>
 </head>
 <body ng-app="myApp">
 
@@ -25,28 +26,8 @@
       <tr  ng-repeat = "(key, value) in stockDataObject" ng-class= "value[1]"> 
         <td>{{key}}</td>
         <td>{{value[0]}}</td>
-        <td>{{value[2]}}</td>
+        <td>{{value[3]}}</td>
       </tr>      
-     <!-- <tr class="success">
-        <td>Success</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr class="danger">
-        <td>Danger</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr class="info">
-        <td>Info</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-      </tr>
-      <tr class="warning">
-        <td>Warning</td>
-        <td>Refs</td>
-        <td>bo@example.com</td>
-      </tr> -->
     
     </tbody>
   </table>
