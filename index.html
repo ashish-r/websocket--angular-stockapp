@@ -6,9 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="js/app.js"></script>
+  
   <script src="js/timeformat.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/chartdata.js"></script>
+  
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
+<style>
+  .uppercase{
+    text-transform: uppercase;
+  }
+  </style>
 <body ng-app="myApp">
 
 <div class="container" ng-controller="stockTableController">
@@ -17,14 +26,14 @@
   <table class="table">
     <thead>
       <tr class="active">
-        <th>Ticker</th>
+        <th>Ticker <span class="glyphicon glyphicon-sort-by-attributes"></th>
         <th>Price</th>
         <th>Last Update</th>
       </tr>
     </thead>
     <tbody>
       <tr  ng-repeat = "(key, value) in stockDataObject" ng-class= "value[1]"> 
-        <td>{{key}}</td>
+        <td class = "uppercase">{{key}}</td>
         <td>{{value[0]}}</td>
         <td>{{value[3]}}</td>
       </tr>      
@@ -33,6 +42,41 @@
   </table>
 </div>
 
+
+
+<div id="linechart_material" style="width: 900px; height: 500px"></div>
+
 </body>
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['line']});
+        google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    google.charts.load('current', {'packages':['line']});
+    google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('date', 'Day');
+      data.addColumn('number', 'Guardians of the Galaxy');
+
+    data.addRows(chartDataObject.aks);
+
+    var options = {
+      chart: {
+        title: 'Box Office Earnings in First Two Weeks of Opening',
+        subtitle: 'in millions of dollars (USD)'
+      },
+      width: 900,
+      height: 500
+    };
+
+    var chart = new google.charts.Line(document.getElementById('linechart_material'));
+
+    chart.draw(data, google.charts.Line.convertOptions(options));
+  }
+  }
+</script>
 </html>
 
