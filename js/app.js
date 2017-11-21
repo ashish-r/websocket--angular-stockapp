@@ -41,6 +41,7 @@ socket.onmessage = function(event) {
 // Show a disconnected message when the WebSocket is closed.
 socket.onclose = function(event) {
   console.log('Disconnected from WebSocket');
+  console.log(event);
 };
 
   
