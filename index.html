@@ -1,53 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Media.Net Test</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  
-  <script src="js/timeformat.js"></script>
-  <script src="js/app.js"></script>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script src="js/chartdata.js"></script>
+	<title>Media.Net Test</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="js/timeformat.js"></script>
+	<script src="js/app.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script src="js/chartdata.js"></script>
 </head>
 <style>
-  .uppercase{
-    text-transform: uppercase;
-  }
-  .center{
-    text-align: center
-  }
-  .right{
-    text-align: right
-  }
-  .pointer{
-    cursor: pointer;
-  }
-  .searchInput{
-    text-align: right;
-    padding: 5px;
-  }
-  #chartArea{
-    display: none;
-  }
-.borderRight{
-  border-right: 2px solid #ddd;
+	.uppercase {
+		text-transform: uppercase;
+	}
 
-}
+	.center {
+		text-align: center
+	}
 
-  </style>
+	.right {
+		text-align: right
+	}
+
+	.pointer {
+		cursor: pointer;
+	}
+
+	.searchInput {
+		text-align: right;
+		padding: 5px;
+	}
+
+	#chartArea {
+		display: none;
+	}
+
+	.borderRight {
+		border-right: 2px solid #ddd;
+	}
+</style>
+
 <body ng-app="myApp">
-
-<div id = "mainView" class="container" ng-controller="stockTableController">
-  <h2>Stock Data</h2>
-  <div id ="tabularData">
-    <div class="searchInput">Search: <input type="text" ng-model="searchVar" placeholder="Ticker"></div>
-    <table class="table" >
-      <thead>
-        <tr class="active">
-          <th class= "center borderRight">Ticker <span class="pointer glyphicon" ng-class = "sortByIcon" ng-click="changeOrderBy()"></th>
+	<div id="mainView" class="container" ng-controller="stockTableController">
+		<h2>Stock Data</h2>
+		<div id="tabularData">
+			<div class="searchInput">Search: <input type="text" ng-model="searchVar" placeholder="Ticker"></div>
+			<table class="table">
+				<thead>
+					<tr class="active">
+						<th class="center borderRight">Ticker <span class="pointer glyphicon" ng-class="sortByIcon" ng-click="changeOrderBy()"></th>
           <th class= "center borderRight">Price</th>
           <th class= "center borderRight">Last Update</th>
           <th class= "center">Graph</th>
@@ -59,24 +63,16 @@
           <td class="borderRight right">{{stockDataObject[key][0]}}</td>
           <td class="borderRight">{{stockDataObject[key][3]}}</td>
           <td class ="center " ng-click="showChart(key)"><span class="pointer  glyphicon glyphicon-share"></span></td>
-        </tr>      
-    
-      </tbody>
-    </table>
-  </div>
-  <div id = "chartArea">
-  <div id ="chartRenderArea"></div>
-  
-  <h4  class= "right" ng-click="hideChart()"><button type="button" class="pointer  btn btn-default btn-sm">
+					</tr>
+					</tbody>
+			</table>
+		</div>
+		<div id="chartArea">
+			<div id="chartRenderArea"></div>
+			<h4 class="right" ng-click="hideChart()"><button type="button" class="pointer  btn btn-default btn-sm">
       <span class="glyphicon glyphicon-chevron-left"></span> Go Back
     </button></h4>
-  </div>
-</div>
-
-
-
-
-
+		</div>
+	</div>
 </body>
 </html>
-
