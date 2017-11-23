@@ -1,12 +1,10 @@
 var app = angular.module('myApp', []);
 var chartDataObject = {};
-chartDataObject.aks = [[new Date(), 59.545732885175966],
-[new Date(), 17.083076230117108]
-,[new Date(), 150.12735309276283]]
-
 app.controller('stockTableController', ['$scope',  function ($scope) {
   $scope.stockDataObject = {};
-
+  $scope.repeatArray = [];
+  $scope.sortByIcon = "glyphicon-sort-by-alphabet";
+  $scope.searchVar = "";
   var stockdata = [];
   var socket = new WebSocket('ws://stocks.mnet.website');
   
@@ -26,8 +24,7 @@ socket.onmessage = function(event) {
   stockdata = JSON.parse(event.data);
   createChartData(stockdata);
   updateObject(1);
-  
-  
+
 };
 
 
@@ -38,7 +35,25 @@ socket.onclose = function(event) {
 };
 
 
-setInterval(function updateTime(){
+$scope.showChart = displayChart;
+$scope.hideChart = function(){
+  document.getElementById('tabularData').style.display = 'block';
+  document.getElementById('chartArea').style.display = 'none';
+};
+
+$scope.changeOrderBy = function(){
+  if($scope.sortByIcon === "glyphicon-sort-by-alphabet"){
+      $scope.orderByVar = "-";
+      $scope.sortByIcon = "glyphicon-sort-by-alphabet-alt";
+  }
+  else{
+    $scope.sortByIcon = "glyphicon-sort-by-alphabet";
+    $scope.orderByVar = "+";
+  }
+
+}
+
+setInterval(function(){
   updateObject(2);
   //console.log($scope.stockDataObject);
 }, 60000);
@@ -46,6 +61,7 @@ setInterval(function updateTime(){
 function updateObject(typeop){
   $scope.$apply(function() {
     if(typeop === 1){
+      $scope.repeatArray = Object.keys($scope.stockDataObject);
       stockdata.forEach(
         (singleStockData) => {
           var rowClass = $scope.stockDataObject[singleStockData[0]] ? $scope.stockDataObject[singleStockData[0]][0] - singleStockData[1] > 0 ? "success" : "danger" : "";
@@ -61,6 +77,7 @@ function updateObject(typeop){
      }
 
     }
+    
     //console.log($scope.stockDataObject);
     });
   }
